@@ -1,0 +1,15 @@
+# Deta files
+.deta/
+.space
+
+
+# Compiled javascript files
+dist/
+
+# Node
+node_modules/
+yarn.lock
+package-lock.json
+
+# env variables
+.env
