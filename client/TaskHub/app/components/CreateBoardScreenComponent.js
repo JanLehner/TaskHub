@@ -9,6 +9,10 @@ const CreateBoardComponent = () => {
   const [password, setPassword] = useState('');
 
   const handleCreateBoard = async () => {
+    if (!boardName.trim() || !boardDescription.trim() || (!isPublic && !password.trim())) {
+      Alert.alert('Error', 'Please fill in all required fields');
+      return;
+    }
     try {
       const response = await fetch('https://api.taskhub.sanqro.me/board/create', {
         method: 'POST',
@@ -61,7 +65,7 @@ const CreateBoardComponent = () => {
         secureTextEntry
       />
       <FunctionButton
-        title="Create Board"
+        buttonText="Create Board"
         onPress={handleCreateBoard}
       />
     </View>
