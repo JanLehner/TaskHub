@@ -1,8 +1,8 @@
 import { StyleSheet } from "react-native";
 
-const lightBlue = "#9D8FC5";
+const blue = "#9D8FC5";
 const darkBlue = "#6759A7";
-const pink = "#d633b0";
+const lightBlue = "#57bcde";
 
 export const styles = StyleSheet.create({
   container: {
@@ -14,19 +14,27 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  headerText: {
+  header: {
     height: "15%",
     widht: "100%",
     backgroundColor: darkBlue,
+  },
+  title: {
+    fontSize: 30,
+    color: lightBlue,
   },  
   main: {
     height: "75%",
     widht: "100%",
-    backgroundColor: lightBlue,
+    backgroundColor: blue,
   },
-  footerText: {
+  footer: {
     height: "10%",
     widht: "100%",
     backgroundColor: darkBlue,
-  },  
+  },
+  copyright: {
+    fontSize: 20,
+    color: lightBlue,
+  } 
 });

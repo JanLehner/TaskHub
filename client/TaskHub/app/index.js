@@ -5,7 +5,7 @@ import { Link } from "expo-router";
 
 export default function IndexScreen() {
   return <View style={styles.container}>
-    <Link href="/loginSite" asChild>
+    <Link href="/screens/loginSite" asChild>
       <Pressable>
         <Text>List</Text>
       </Pressable>
