@@ -1,9 +1,5 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, Alert, Switch, Text, StyleSheet } from 'react-native';
-
-
-import React, { useState } from 'react';
-import { View, TextInput, Button, Alert, Switch, Text, StyleSheet } from 'react-native';
 import FunctionButton from './FunctionButton';
 
 const CreateBoardComponent = () => {
