@@ -1,8 +1,9 @@
 import { StyleSheet } from "react-native";
 
-const blue = "#9D8FC5";
-const darkBlue = "#6759A7";
-const lightBlue = "#57bcde";
+const darkBlue = "#0D1117";
+const blue = "#263142";
+const orange = "#ba4d09";
+const lightOrange = "#d96e2b";
 
 export const styles = StyleSheet.create({
   container: {
@@ -21,7 +22,7 @@ export const styles = StyleSheet.create({
   },
   title: {
     fontSize: 30,
-    color: lightBlue,
+    color: orange,
   },  
   main: {
     height: "75%",
@@ -35,6 +36,6 @@ export const styles = StyleSheet.create({
   },
   copyright: {
     fontSize: 20,
-    color: lightBlue,
+    color: orange,
   } 
 });

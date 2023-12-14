@@ -19,8 +19,8 @@ export default function LoginScreen() {
           value={enteredUsername} placeholder="Username" />
         <TextInput style={stylesLogin.loginInputField} onChangeText={UpdateEnteredPassword}
           value={enteredPassword} placeholder="Password" />
-        <Pressable style={{ ...styles.flexbox, ...stylesList.modalBackBtn }} onPress={resetModalAddACity}>
-          <Text>Log in</Text>
+        <Pressable style={{ ...styles.flexbox, ...stylesLogin.loginBtn }}>
+          <Text style={stylesLogin.loginBtnText}>Log in</Text>
         </Pressable>
       </Main>
       <Footer text="&copy; 2023" />
