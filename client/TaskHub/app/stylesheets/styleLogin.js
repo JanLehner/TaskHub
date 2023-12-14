@@ -22,13 +22,25 @@ export const stylesLogin = StyleSheet.create({
     borderWidth: 1,
     marginTop: "2%"
   },
+  loginInformationTextView: {
+    height: "5%",
+    width: "50%",
+    margin: "1%"
+  },
+  loginRegisterText:{
+    color: lightOrange,
+    fontSize: 18,
+  },
+  loginErrorMessageText: {
+    color: "#c4102e",
+    fontSize: 18,
+  },
   loginBtn: {
     height: "10%",
     width: "20%",
     backgroundColor: lightOrange,
     borderRadius: 5,
     borderWidth: 1,
-    marginTop: "2%"
   },
   loginBtnText: {
     fontSize: 20,

@@ -10,27 +10,30 @@ import { Link } from "expo-router";
 export default function LoginScreen() {
   const [enteredUsername, UpdateEnteredUsername] = useState("");
   const [enteredPassword, UpdateEnteredPassword] = useState("");
+  const [reenteredPassword, UpdateReenteredPassword] = useState("");
   const [errorMessage, UpdateErrorMessage] = useState("");
 
   return (
     <View style={styles.container}>
       <Header text="TaskHub" />
       <Main>
-        <Text style={stylesLogin.loginTitle}>Login</Text>
+        <Text style={stylesLogin.loginTitle}>Register</Text>
         <TextInput style={stylesLogin.loginInputField} onChangeText={UpdateEnteredUsername}
           value={enteredUsername} placeholder="Username" />
         <TextInput style={stylesLogin.loginInputField} onChangeText={UpdateEnteredPassword}
           value={enteredPassword} placeholder="Password" />
-        <Link href="/screens/registerSite" asChild>
+        <TextInput style={stylesLogin.loginInputField} onChangeText={UpdateEnteredPassword}
+          value={enteredPassword} placeholder="Re-enter password" />
+        <Link href="/screens/loginSite" asChild>
           <Pressable style={{ ...styles.flexbox, ...stylesLogin.loginInformationTextView }}>
-            <Text style={stylesLogin.loginRegisterText}>New to TaskHub? Create an account</Text>
+            <Text style={stylesLogin.loginRegisterText}>Already have an account? Log in</Text>
           </Pressable>
         </Link>
         <View style={{ ...styles.flexbox, ...stylesLogin.loginInformationTextView }}>
           <Text style={stylesLogin.loginErrorMessageText}>{errorMessage}</Text>
         </View>
         <Pressable style={{ ...styles.flexbox, ...stylesLogin.loginBtn }} onPress={() => UpdateErrorMessage("Incorrect username or password.")}>
-          <Text style={stylesLogin.loginBtnText}>Log in</Text>
+          <Text style={stylesLogin.loginBtnText}>Register</Text>
         </Pressable>
       </Main>
       <Footer text="&copy; 2023" />
