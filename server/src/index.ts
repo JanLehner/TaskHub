@@ -1,6 +1,8 @@
 import express from "express";
 import cors from "cors";
 import auth from "./routes/auth";
+import task from "./routes/task";
+import board from "./routes/board";
 
 const app = express();
 app.use(express.json());
@@ -15,6 +17,8 @@ app.get("/", (req, res) =>
 
 // routes
 app.use("/auth", auth);
+app.use("/task", task);
+app.use("/board", board);
 
 const port = parseInt(process.env.PORT) || 8080;
 app.listen(port, () => {

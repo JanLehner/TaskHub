@@ -12,3 +12,16 @@ export interface IRegisterForm {
 export interface IJWTData {
   username: string;
 }
+
+export interface ITask {
+  title: string;
+  definition: string;
+  owner: string;
+  board: string;
+}
+
+export interface IBoard {
+  owner: string;
+  title: string;
+  tasks: ITask[];
+}
