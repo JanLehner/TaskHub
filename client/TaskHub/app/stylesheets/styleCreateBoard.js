@@ -5,12 +5,8 @@ const blue = "#263142";
 const orange = "#ba4d09";
 const lightOrange = "#d96e2b";
 
-export const stylesLogin = StyleSheet.create({
-  loginTitle: {
-    fontSize: 35,
-    color: lightOrange,
-  },
-  loginInputField: {
+export const stylesCreateBoard = StyleSheet.create({
+  inputField: {
     height: "10%",
     width: "60%",
     fontSize: 20,
@@ -22,30 +18,27 @@ export const stylesLogin = StyleSheet.create({
     borderWidth: 1,
     marginTop: "2%"
   },
+  inputFieldBig: {
+    height: "20%",
+  },
   loginInformationTextView: {
     height: "5%",
     width: "50%",
     margin: 10
-  },
-  loginRegisterText:{
-    color: lightOrange,
-    fontSize: 18,
-    textAlign: "center",
   },
   loginErrorMessageText: {
     color: "#c4102e",
     fontSize: 18,
     textAlign: "center",
   },
-  loginBtn: {
+  addBtn: {
     height: "10%",
     width: "20%",
     backgroundColor: lightOrange,
     borderRadius: 5,
     borderWidth: 1,
   },
-  loginBtnText: {
-    fontSize: 20,
-    color: darkBlue,
+  addBtnText: {
+
   },
 });

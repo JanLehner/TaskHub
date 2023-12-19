@@ -7,7 +7,7 @@ import { Main } from "../components/main";
 import { Footer } from "../components/footer";
 import { Link } from "expo-router";
 
-export default function LoginScreen() {
+export default function RegisterScreen() {
   const [enteredUsername, UpdateEnteredUsername] = useState("");
   const [enteredPassword, UpdateEnteredPassword] = useState("");
   const [reenteredPassword, UpdateReenteredPassword] = useState("");
