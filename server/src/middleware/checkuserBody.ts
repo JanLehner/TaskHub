@@ -4,7 +4,7 @@ import { IJWTPayload } from "../interfaces/interfaces";
 import * as dotenv from "dotenv";
 import path from "path";
 
-export default async function checkAuth(req: any, res: any, next: any) {
+export default async function checkUserBody(req: any, res: any, next: any) {
   try {
     const token: string = req.headers.authorization;
     const jwtData = jwt.verify(token, process.env.JWT_SECRET);
