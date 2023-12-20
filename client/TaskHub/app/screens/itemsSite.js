@@ -6,7 +6,7 @@ import { Header } from "../components/header";
 import { Main } from "../components/main";
 import { Footer } from "../components/footer";
 
-export default function BoardScreen() {
+export default function ItemScreen() {
   const [isEmptyPromptVisible, UpdateIsEmptyPromptVisible] = useState(true);
   const [emptyPromt, UpdateEmptypromt] = useState("ohh it's cold in here, time to create some items by clicking on the plus.")
 
@@ -30,11 +30,11 @@ export default function BoardScreen() {
         </View>
         <ScrollView style={styleItems.boardsScrollView} contentContainerStyle={{ display: "flex", justifyContent: "center", alignItems: "center", }}>
           <Text style={styleItems.emptyPromt}>{emptyPromt}</Text>
-          <View style={{ ...styles.flexbox, ...styleItems.item }}>
+          <Pressable style={{ ...styles.flexbox, ...styleItems.item }}>
             <Text style={styleItems.itemTitle}>"Hier Titel"</Text>
-            <Text style={styleItems.itemDescription}>Beschreibung: "Hier kommt die lange und gute Beschreibung eines Items hin."</Text>
-            <Text  style={styleItems.itemDueDate}>Erledigen bis: "Hier due date"</Text>
-          </View>
+            <Text style={styleItems.itemDescription}>Description: "Hier kommt die lange und gute Beschreibung eines Items hin."</Text>
+            <Text  style={styleItems.itemDueDate}>Due till: "Hier due date"</Text>
+          </Pressable>
         </ScrollView>
         <View style={{ ...styles.flexbox, ...styleItems.mainFooter }}>
           <Pressable style={{ ...styles.flexbox, ...styleItems.logoutBtn }}>
