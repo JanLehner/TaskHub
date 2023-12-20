@@ -6,7 +6,6 @@ export interface ILoginForm {
 export interface IRegisterForm {
   username: string;
   password: string;
-  email: string;
 }
 
 export interface IJWTData {
