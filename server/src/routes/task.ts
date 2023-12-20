@@ -3,6 +3,7 @@ import * as dotenv from "dotenv";
 import path from "path";
 import { Deta } from "deta";
 import { ITask, IBoard, ITaskUpdate } from "../interfaces/interfaces";
+import checkUserBody from "../middleware/checkuserBody";
 dotenv.config({ path: path.resolve(__dirname, "../.env") });
 
 // deta setup
@@ -12,7 +13,7 @@ const boardSets = deta.Base("board");
 
 const router = express.Router();
 
-router.post("/create/:board", async (req, res) => {
+router.post("/create/:board", checkUserBody, async (req, res) => {
   try {
     const taskDataSet: ITask = req.body as ITask;
     const key = taskDataSet.title.trim() + taskDataSet.owner.trim();
@@ -47,7 +48,7 @@ router.post("/create/:board", async (req, res) => {
 });
 
 
-router.post("/delete/:board/", async (req, res) => {
+router.post("/delete/:board/", checkUserBody, async (req, res) => {
   try {
     const taskDataSet: ITask = req.body as ITask;
     const key = taskDataSet.title.trim() + taskDataSet.owner.trim();
@@ -95,7 +96,7 @@ router.post("/delete/:board/", async (req, res) => {
   }
 });
 
-router.post("/update/:board/", async (req, res) => {
+router.post("/update/:board/", checkUserBody, async (req, res) => {
   try {
     const taskDataSet: ITaskUpdate = req.body as ITaskUpdate;
     const key = taskDataSet.title.trim() + taskDataSet.owner.trim();

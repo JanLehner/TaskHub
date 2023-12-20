@@ -1,3 +1,5 @@
+import { JwtPayload } from "jsonwebtoken";
+
 export interface ILoginForm {
   username: string;
   password: string;
@@ -49,4 +51,8 @@ export interface ITaskUpdate {
   newTitle?: string;
   newDescription?: string;
   newDueDate?: string;
+}
+
+export interface IJWTPayload extends JwtPayload {
+  username: string;
 }
