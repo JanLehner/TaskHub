@@ -14,13 +14,39 @@ export interface IJWTData {
 
 export interface ITask {
   title: string;
-  definition: string;
+  description: string;
+  dueDate: string;
   owner: string;
-  board: string;
-}
+} 
 
 export interface IBoard {
   owner: string;
   title: string;
   tasks: ITask[];
+  public: boolean;
+  password?: string;
+}
+
+export interface IAddPublicBoard {
+  title: string;
+  owner: string;
+}
+
+export interface IGetPublicBoards {
+  username: string;
+  passwords: IPasswordBoard[];
+}
+export interface IPasswordBoard {
+  title: string;
+  password: string;
+}
+
+export interface ITaskUpdate {
+  title: string;
+  description: string;
+  dueDate: Date;
+  owner: string;
+  newTitle?: string;
+  newDescription?: string;
+  newDueDate?: string;
 }
