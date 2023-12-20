@@ -30,8 +30,6 @@ router.post("/create", async (req, res) => {
 
     if (await boardSets.get(boardDataSet.title)) {
       throw new Error("This board name exists already. Please try to edit this!");
-    } else if (await boardSets.get(key)) {
-      throw new Error("This task name exists already. Please try to edit this!");
     }
 
     const tasks: ITask[] = [];
@@ -56,34 +54,15 @@ router.post("/create", async (req, res) => {
   }
 });
 
-
-router.get("/getPublic", async (req, res) => {
-  try {
-    const fetchedBoards = await boardSets.fetch({ public: true });
-    if (fetchedBoards == null) {
-      res.status(409).json({
-        error: "This task does not exist."
-      });
-      return false;
-    } else {
-      res.status(201).json({ fetchedBoards });
-    }
-  } catch (err) {
-    res.status(503).json({ error: err.message });
-  }
-});
-
-
 router.post("/addPublicBoard", async (req, res) => {
   try {
     const addPublicBoardData: IAddPublicBoard = req.body as IAddPublicBoard;
-
 
     if (!(await boardSets.get(addPublicBoardData.title))) {
       throw new Error("This board does not exist");
     }
 
-    if (await publicBoards.get(addPublicBoardData.owner + addPublicBoardData.title) !== null) {
+    if ((await publicBoards.get(addPublicBoardData.owner + addPublicBoardData.title)) !== null) {
       throw new Error("You already added this board to your public boards.");
     }
 
@@ -93,7 +72,7 @@ router.post("/addPublicBoard", async (req, res) => {
       title: addPublicBoardData.title
     };
 
-   await publicBoards.insert(JSON.parse(JSON.stringify(addPublicBoardDataJSON)));
+    await publicBoards.insert(JSON.parse(JSON.stringify(addPublicBoardDataJSON)));
 
     res.status(201).json({
       title: addPublicBoardData.title,
@@ -105,8 +84,7 @@ router.post("/addPublicBoard", async (req, res) => {
   }
 });
 
-
-router.get("/getAll/", async (req, res) => {
+router.get("/getAll", async (req, res) => {
   try {
     const parameters: IGetPublicBoards = req.body as IGetPublicBoards;
     const username = parameters.username;
@@ -116,18 +94,20 @@ router.get("/getAll/", async (req, res) => {
     for (let fetchedPublicBoard of fetchedPublicBoards.items) {
       if (parameters.passwords != null) {
         for (let password of parameters.passwords) {
-          const board = await boardSets.get(fetchedPublicBoard.key.replace(fetchedPublicBoard.owner, ''));
+          const board = await boardSets.get(
+            fetchedPublicBoard.key.replace(fetchedPublicBoard.owner, "")
+          );
           if (password.title === board.key) {
             if (await argon2.verify(board.password as string, password.password)) {
               delete board.password;
               fetchedBoards.items.push(board);
-            } 
+            }
           }
         }
       }
     }
-    for(let i = 0; i < fetchedBoards.count; i++) {
-      if(fetchedBoards.items[i].public) {
+    for (let i = 0; i < fetchedBoards.count; i++) {
+      if (fetchedBoards.items[i].public) {
         delete fetchedBoards.items[i].password;
       }
     }
@@ -143,4 +123,28 @@ router.get("/getAll/", async (req, res) => {
     res.status(503).json({ error: err.message });
   }
 });
+
+router.get("/get/:board/:password", async (req, res) => {
+  try {
+    const board = req.params.board;
+    const password = req.params.password;
+    const fetchedBoard = await boardSets.get(board);
+    
+    if ( fetchedBoard == null) {
+      throw new Error("This board does not exist.");
+    }
+    if (fetchedBoard.public) {
+      console.log(fetchedBoard.password);
+      if (await argon2.verify(fetchedBoard.password as string, password)) {
+        delete fetchedBoard.password;
+        res.status(201).json({ fetchedBoard });
+      } else {
+        throw new Error("Wrong credentials.");
+      }
+    } 
+  } catch (err) {
+    res.status(503).json({ error: err.message });
+  }
+});
+
 export default router;
