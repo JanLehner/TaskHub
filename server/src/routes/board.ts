@@ -107,4 +107,32 @@ router.post("/addPublicBoard", async (req, res) => {
 });
 
 
+router.get("/getAll/:username", async (req, res) => {
+  try {
+    const username = req.params.username;
+    const fetchedBoards = await boardSets.fetch({ owner: username });
+    const fetchedPublicBoards: any = await publicBoards.fetch({ owner: username });
+
+    for (let i = 0; i < fetchedPublicBoards.count; i++) {
+      const board = await boardSets.get(fetchedPublicBoards.items[i].key.replace(fetchedPublicBoards.items[i].owner, ''));
+      delete board.password;
+      fetchedBoards.items.push(board);
+    }
+    for(let i = 0; i < fetchedBoards.count; i++) {
+      if(fetchedBoards.items[i].public) {
+        delete fetchedBoards.items[i].password;
+      }
+    }
+    if (fetchedBoards == null || publicBoards == null) {
+      res.status(409).json({
+        error: "No boards yet."
+      });
+      return false;
+    } else {
+      res.status(201).json({ fetchedBoards });
+    }
+  } catch (err) {
+    res.status(503).json({ error: err.message });
+  }
+});
 export default router;
