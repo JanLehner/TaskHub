@@ -40,3 +40,13 @@ export interface IPasswordBoard {
   title: string;
   password: string;
 }
+
+export interface ITaskUpdate {
+  title: string;
+  description: string;
+  dueDate: Date;
+  owner: string;
+  newTitle?: string;
+  newDescription?: string;
+  newDueDate?: string;
+}
