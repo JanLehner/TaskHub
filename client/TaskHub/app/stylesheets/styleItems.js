@@ -29,7 +29,7 @@ export const styleItems = StyleSheet.create({
     marginTop: 20,
   },
   item: {
-    height: 200,
+    height: 180,
     width: "80%",
     marginTop: 20,
     backgroundColor: darkBlue,
@@ -40,13 +40,15 @@ export const styleItems = StyleSheet.create({
     height: "15%",
     width: "95%",
     color: orange,
-    fontSize: 30,
+    fontSize: 28,
+    marginBottom: 5
   },
   itemDescription:{
-    height: "80%",
+    height: "75%",
     width: "95%",
     color: orange,
     fontSize: 15,
+    marginBottom: 5
   },
   itemDueDate: {
     height: "10%",
