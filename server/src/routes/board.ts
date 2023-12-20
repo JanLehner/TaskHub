@@ -4,6 +4,7 @@ import path from "path";
 import { Deta } from "deta";
 import argon2 from "argon2";
 import { ITask, IBoard, IAddPublicBoard, IGetPublicBoards } from "../interfaces/interfaces";
+import checkAuth from "../middleware/checkuserBody";
 dotenv.config({ path: path.resolve(__dirname, "../.env") });
 
 // deta setup
@@ -14,7 +15,7 @@ const publicBoards = deta.Base("publicBoards");
 
 const router = express.Router();
 
-router.post("/create", async (req, res) => {
+router.post("/create", checkAuth, async (req, res) => {
   try {
     let passwordHash = "";
     const boardDataSet: IBoard = req.body as IBoard;
@@ -28,10 +29,6 @@ router.post("/create", async (req, res) => {
 
     const key = boardDataSet.title.trim() + boardDataSet.owner.trim();
 
-    if (await boardSets.get(boardDataSet.title)) {
-      throw new Error("This board name exists already. Please try to edit this!");
-    }
-
     const tasks: ITask[] = [];
 
     const boardDataSetJSON = {
@@ -43,11 +40,17 @@ router.post("/create", async (req, res) => {
       password: passwordHash
     };
 
+    if (await boardSets.get(key)) {
+      throw new Error("This board name exists already. Please try to edit this!");
+    }
     const newtaskDataSet = await boardSets.insert(JSON.parse(JSON.stringify(boardDataSetJSON)));
 
     res.status(201).json({
       title: boardDataSet.title,
-      owner: boardDataSet.owner
+      owner: boardDataSet.owner,
+      tasks: tasks,
+      public: boardDataSet.public,
+      success: true,
     });
   } catch (err) {
     res.status(503).json({ error: err.message });
