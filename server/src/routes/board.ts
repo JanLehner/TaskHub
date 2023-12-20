@@ -3,13 +3,14 @@ import * as dotenv from "dotenv";
 import path from "path";
 import { Deta } from "deta";
 import argon2 from "argon2";
-import { ITask, IBoard } from "../interfaces/interfaces";
+import { ITask, IBoard, IAddPublicBoard } from "../interfaces/interfaces";
 dotenv.config({ path: path.resolve(__dirname, "../.env") });
 
 // deta setup
 const projectKey: string = process.env.DETA_PROJECT_KEY;
 const deta = Deta(projectKey);
 const boardSets = deta.Base("board");
+const publicBoards = deta.Base("publicBoards");
 
 const router = express.Router();
 
@@ -20,7 +21,7 @@ router.post("/create", async (req, res) => {
     if (typeof boardDataSet.title !== "string" || typeof boardDataSet.owner !== "string") {
       throw new Error("Invalid 'title' or 'owner' in the request.");
     }
-    
+
     if (boardDataSet.public) {
       passwordHash = await argon2.hash(boardDataSet.password);
     }
@@ -71,5 +72,32 @@ router.get("/getPublic", async (req, res) => {
     res.status(503).json({ error: err.message });
   }
 });
+
+
+router.post("/addPublicBoard", async (req, res) => {
+  try {
+    const addPublicBoardData: IAddPublicBoard = req.body as IAddPublicBoard;
+
+
+    if (!(await boardSets.get(addPublicBoardData.title))) {
+      throw new Error("This board does not exist");
+    }
+
+    const addPublicBoardDataJSON = {
+      key: addPublicBoardData.owner + addPublicBoardData.title,
+    };
+
+   await boardSets.insert(JSON.parse(JSON.stringify(addPublicBoardDataJSON)));
+
+    res.status(201).json({
+      title: addPublicBoardData.title,
+      owner: addPublicBoardData.owner,
+      success: true
+    });
+  } catch (err) {
+    res.status(503).json({ error: err.message });
+  }
+});
+
 
 export default router;
