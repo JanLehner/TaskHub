@@ -23,4 +23,6 @@ export interface IBoard {
   owner: string;
   title: string;
   tasks: ITask[];
+  public: boolean;
+  password?: string;
 }
