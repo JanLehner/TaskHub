@@ -92,6 +92,9 @@ router.get("/getAll", async (req, res) => {
   try {
     const parameters: IGetPublicBoards = req.body as IGetPublicBoards;
     const username = parameters.username;
+    if (username == undefined || username == null || username == "") {  
+      throw new Error("Invalid username.");
+    }
     const fetchedBoards = await boardSets.fetch({ owner: username });
     const fetchedPublicBoards: any = await publicBoards.fetch({ owner: username });
 
