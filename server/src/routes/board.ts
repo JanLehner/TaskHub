@@ -3,8 +3,7 @@ import * as dotenv from "dotenv";
 import path from "path";
 import { Deta } from "deta";
 import argon2 from "argon2";
-import { ITask, IBoard, IAddPublicBoard } from "../interfaces/interfaces";
-import { title } from "process";
+import { ITask, IBoard, IAddPublicBoard, IGetPublicBoards } from "../interfaces/interfaces";
 dotenv.config({ path: path.resolve(__dirname, "../.env") });
 
 // deta setup
@@ -107,16 +106,25 @@ router.post("/addPublicBoard", async (req, res) => {
 });
 
 
-router.get("/getAll/:username", async (req, res) => {
+router.get("/getAll/", async (req, res) => {
   try {
-    const username = req.params.username;
+    const parameters: IGetPublicBoards = req.body as IGetPublicBoards;
+    const username = parameters.username;
     const fetchedBoards = await boardSets.fetch({ owner: username });
     const fetchedPublicBoards: any = await publicBoards.fetch({ owner: username });
 
-    for (let i = 0; i < fetchedPublicBoards.count; i++) {
-      const board = await boardSets.get(fetchedPublicBoards.items[i].key.replace(fetchedPublicBoards.items[i].owner, ''));
-      delete board.password;
-      fetchedBoards.items.push(board);
+    for (let fetchedPublicBoard of fetchedPublicBoards.items) {
+      if (parameters.passwords != null) {
+        for (let password of parameters.passwords) {
+          const board = await boardSets.get(fetchedPublicBoard.key.replace(fetchedPublicBoard.owner, ''));
+          if (password.title === board.key) {
+            if (await argon2.verify(board.password as string, password.password)) {
+              delete board.password;
+              fetchedBoards.items.push(board);
+            } 
+          }
+        }
+      }
     }
     for(let i = 0; i < fetchedBoards.count; i++) {
       if(fetchedBoards.items[i].public) {
