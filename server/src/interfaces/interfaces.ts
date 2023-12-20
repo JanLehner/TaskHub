@@ -14,7 +14,8 @@ export interface IJWTData {
 
 export interface ITask {
   title: string;
-  definition: string;
+  description: string;
+  dueDate: string;
   owner: string;
 } 
 
