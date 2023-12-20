@@ -4,6 +4,7 @@ import path from "path";
 import { Deta } from "deta";
 import argon2 from "argon2";
 import { ITask, IBoard, IAddPublicBoard } from "../interfaces/interfaces";
+import { title } from "process";
 dotenv.config({ path: path.resolve(__dirname, "../.env") });
 
 // deta setup
@@ -83,11 +84,17 @@ router.post("/addPublicBoard", async (req, res) => {
       throw new Error("This board does not exist");
     }
 
+    if (await publicBoards.get(addPublicBoardData.owner + addPublicBoardData.title) !== null) {
+      throw new Error("You already added this board to your public boards.");
+    }
+
     const addPublicBoardDataJSON = {
       key: addPublicBoardData.owner + addPublicBoardData.title,
+      owner: addPublicBoardData.owner,
+      title: addPublicBoardData.title
     };
 
-   await boardSets.insert(JSON.parse(JSON.stringify(addPublicBoardDataJSON)));
+   await publicBoards.insert(JSON.parse(JSON.stringify(addPublicBoardDataJSON)));
 
     res.status(201).json({
       title: addPublicBoardData.title,
