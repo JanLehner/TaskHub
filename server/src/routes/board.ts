@@ -4,7 +4,7 @@ import path from "path";
 import { Deta } from "deta";
 import argon2 from "argon2";
 import { ITask, IBoard, IAddPublicBoard, IGetPublicBoards } from "../interfaces/interfaces";
-import checkAuth from "../middleware/checkuserBody";
+import checkUserBody from "../middleware/checkuserBody";
 dotenv.config({ path: path.resolve(__dirname, "../.env") });
 
 // deta setup
@@ -15,7 +15,7 @@ const publicBoards = deta.Base("publicBoards");
 
 const router = express.Router();
 
-router.post("/create", checkAuth, async (req, res) => {
+router.post("/create", checkUserBody, async (req, res) => {
   try {
     let passwordHash = "";
     const boardDataSet: IBoard = req.body as IBoard;
@@ -57,7 +57,7 @@ router.post("/create", checkAuth, async (req, res) => {
   }
 });
 
-router.post("/addPublicBoard", async (req, res) => {
+router.post("/addPublicBoard", checkUserBody, async (req, res) => {
   try {
     const addPublicBoardData: IAddPublicBoard = req.body as IAddPublicBoard;
 
@@ -72,7 +72,8 @@ router.post("/addPublicBoard", async (req, res) => {
     const addPublicBoardDataJSON = {
       key: addPublicBoardData.owner + addPublicBoardData.title,
       owner: addPublicBoardData.owner,
-      title: addPublicBoardData.title
+      title: addPublicBoardData.title,
+      success: true
     };
 
     await publicBoards.insert(JSON.parse(JSON.stringify(addPublicBoardDataJSON)));
