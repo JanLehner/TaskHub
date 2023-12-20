@@ -30,3 +30,12 @@ export interface IAddPublicBoard {
   title: string;
   owner: string;
 }
+
+export interface IGetPublicBoards {
+  username: string;
+  passwords: IPasswordBoard[];
+}
+export interface IPasswordBoard {
+  title: string;
+  password: string;
+}
