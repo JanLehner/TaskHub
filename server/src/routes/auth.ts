@@ -16,12 +16,16 @@ const jwtSecret: string = process.env.JWT_SECRET;
 
 const router = express.Router();
 
-
 router.post("/register", async (req, res) => {
   try {
     const registrationFormData: IRegisterForm = req.body as IRegisterForm;
 
-    if (registrationFormData.username == null || registrationFormData.password == null || registrationFormData.username == "" || registrationFormData.password == "") {
+    if (
+      registrationFormData.username == null ||
+      registrationFormData.password == null ||
+      registrationFormData.username == "" ||
+      registrationFormData.password == ""
+    ) {
       throw new Error("Invalid Request");
     }
     if (!(await auth.get(registrationFormData.username))) {
@@ -48,7 +52,12 @@ router.post("/login", async (req, res) => {
   try {
     const loginFormData: ILoginForm = req.body as ILoginForm;
 
-    if (loginFormData.username == null || loginFormData.password == null || loginFormData.username == "" || loginFormData.password == "") {
+    if (
+      loginFormData.username == null ||
+      loginFormData.password == null ||
+      loginFormData.username == "" ||
+      loginFormData.password == ""
+    ) {
       throw new Error("Invalid Request");
     }
 
@@ -72,7 +81,5 @@ router.post("/login", async (req, res) => {
     res.status(503).json({ error: err.message });
   }
 });
-
-
 
 export default router;
