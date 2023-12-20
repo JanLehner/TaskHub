@@ -16,8 +16,7 @@ export interface ITask {
   title: string;
   definition: string;
   owner: string;
-  board: string;
-}
+} 
 
 export interface IBoard {
   owner: string;
@@ -25,4 +24,9 @@ export interface IBoard {
   tasks: ITask[];
   public: boolean;
   password?: string;
+}
+
+export interface IAddPublicBoard {
+  title: string;
+  owner: string;
 }
