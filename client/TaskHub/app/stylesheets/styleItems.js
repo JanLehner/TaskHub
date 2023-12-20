@@ -5,9 +5,21 @@ const blue = "#263142";
 const orange = "#ba4d09";
 const lightOrange = "#d96e2b";
 
-export const stylesBoards = StyleSheet.create({
-  boardsScrollView: {
+export const styleItems = StyleSheet.create({
+  mainHeader: {
+    height: "10%",
+    width: "90%",
+    flexDirection: "row",
+    justifyContent: "space-around",
+  },
+  backBtn:{
     height: "80%",
+    width: "100%",
+    backgroundColor: orange,
+    borderRadius: 5,
+  },
+  boardsScrollView: {
+    height: "70%",
     width: "90%",
   },
   emptyPromt: {
@@ -16,21 +28,28 @@ export const stylesBoards = StyleSheet.create({
     fontSize: 20,
     marginTop: 20,
   },
-  boardItem:{
-    height: 165,
+  item: {
+    height: 200,
     width: "80%",
     marginTop: 20,
     backgroundColor: darkBlue,
     borderRadius: 5,
+    justifyContent: "space-evenly",
   },
-  boardItemTitle: {
-    height: "30%",
+  itemTitle:{
+    height: "15%",
     width: "95%",
     color: orange,
     fontSize: 30,
   },
-  boardItemDescription: {
-    height: "70%",
+  itemDescription:{
+    height: "80%",
+    width: "95%",
+    color: orange,
+    fontSize: 15,
+  },
+  itemDueDate: {
+    height: "10%",
     width: "95%",
     color: orange,
     fontSize: 15,

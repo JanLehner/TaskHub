@@ -25,8 +25,7 @@ export default function BoardScreen() {
       <Main>
         <ScrollView style={stylesBoards.boardsScrollView} contentContainerStyle={{ display: "flex", justifyContent: "center", alignItems: "center", }}>
           <Text style={stylesBoards.emptyPromt}>{emptyPromt}</Text>
-          <View
-            style={{ ...styles.flexbox, ...stylesBoards.boardItem }}>
+          <View style={{ ...styles.flexbox, ...stylesBoards.boardItem }}>
             <Text style={stylesBoards.boardItemTitle}>Title</Text>
             <Text style={stylesBoards.boardItemDescription}>Description, bing bong bung bing bong</Text>
           </View>
@@ -44,7 +43,7 @@ export default function BoardScreen() {
             <Text style={stylesBoards.logoutBtnText}>Logout</Text>
           </Pressable>
           <Pressable style={{ ...styles.flexbox, ...stylesBoards.addBtn }}>
-            <Text style={stylesBoards.addBtnText}>+</Text>
+            +
           </Pressable>
         </View>
       </Main>

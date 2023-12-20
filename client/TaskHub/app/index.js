@@ -25,5 +25,20 @@ export default function IndexScreen() {
         <Text>createBoardSite</Text>
       </Pressable>
     </Link>
+    <Link href="/screens/itemsSite" asChild>
+      <Pressable>
+        <Text>itemsSite</Text>
+      </Pressable>
+    </Link>
+    <Link href="/screens/createItemSite" asChild>
+      <Pressable>
+        <Text>createItemSite</Text>
+      </Pressable>
+    </Link>
+    <Link href="/screens/updateItemSite" asChild>
+      <Pressable>
+        <Text>updateItemSite</Text>
+      </Pressable>
+    </Link>
   </View>;
 };
