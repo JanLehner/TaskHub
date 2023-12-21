@@ -307,3 +307,5 @@ Für den Browser verwenden wir die neuste Version von Mozilla Firefox (120).
 Es gehen sehr viel Testfälle nicht, da manchmal nur der Teil für das Backend existiert und daher kann das Projekt so nicht dem Kunden übergeben werden.
 
 ## Projektauswertung
+
+Am Anfang des Projekts haben wir leider den Informieren Schritt von IPERKA unterschätzt und so zu wenig Zeit investiert. Dadurch haben wir uns in der Planung sehr überschätzt und wir ahnten auch noch nicht wie stressig die letzten paar Wochen werden, durch die vielen Prüfungen und Abgaben. Wir haben auf Nebenwirkungen nicht geachtet, wie dass man z.B. von Outlook gebannt wird wenn man zu viele Emails am ersten Tag verschickt. Wir haben, dann diese eher weniger wichtigen Sachen vernachtlässtig und uns darum gekümmert, dass wir am Schluss wenigstens etwas haben und nicht nichts.

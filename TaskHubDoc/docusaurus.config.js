@@ -1,4 +1,4 @@
-// @ts-check
+// @ts-nocheck
 // `@type` JSDoc annotations allow editor autocompletion and type checking
 // (when paired with `@ts-check`).
 // There are various equivalent ways to declare your Docusaurus config.
@@ -6,17 +6,17 @@
 
 import {themes as prismThemes} from 'prism-react-renderer';
 
+export default {
+  url: 'https://taskhub0120.netlify.app',
+  baseUrl: '/',
+  projectName: 'TaskHub',
+}
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'TaskHub',
   tagline: 'Manage deine Tasks',
   favicon: 'img/favicon.ico',
-
-  // Set the production url of your site here
-  url: 'https://google.com', //                                             website doc link
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
