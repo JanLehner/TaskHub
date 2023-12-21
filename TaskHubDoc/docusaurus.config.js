@@ -44,7 +44,7 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/RelxOff/TaskHub/tree/master/doc/docs/Dokumentation.md', //wrong doc link
+            'https://github.com/JanLehner/TaskHub/tree/doc', 
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -67,7 +67,7 @@ const config = {
         items: [
           { to: '/docs/Dokumentation', label: 'Dokumentation', position: 'left' },
           {
-            href: 'https://github.com/RelxOff/TaskHub',
+            href: 'https://github.com/janlehner/TaskHub',
             label: 'GitHub',
             position: 'right',
           },
@@ -113,14 +113,10 @@ const config = {
                 label: 'GitHub',
                 href: 'https://github.com/janLehner/TaskHub',
               },
-              {
-                label: 'Website',
-                href: 'https://google.com', //wrong website link
-              },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} RelxOff/TaskHub`,
+        copyright: `Copyright © ${new Date().getFullYear()} janlehner/TaskHub`,
             },
       prism: {
         theme: prismThemes.github,
