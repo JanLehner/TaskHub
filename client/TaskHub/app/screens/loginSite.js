@@ -5,7 +5,7 @@ import { stylesLogin } from "../stylesheets/styleLogin";
 import { Header } from "../components/header";
 import { Main } from "../components/main";
 import { Footer } from "../components/footer";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function LoginScreen() {
@@ -27,6 +27,7 @@ export default function LoginScreen() {
       });
 
       if (response.ok) {
+        router.replace("/screens/boardSite");
         const data = await response.json();
         AsyncStorage.setItem("token", await data.token);
         AsyncStorage.setItem("username", enteredUsername);
