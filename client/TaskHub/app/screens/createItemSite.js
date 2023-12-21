@@ -5,6 +5,7 @@ import { styleCreateItem } from "../stylesheets/styleCreateItem";
 import { Header } from "../components/header";
 import { Main } from "../components/main";
 import { Footer } from "../components/footer";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function CreateItemScreen() {
   const [enteredTitle, UpdateEnteredTitle] = useState("");
@@ -12,6 +13,31 @@ export default function CreateItemScreen() {
   const [enteredDueDate, UpdateEnteredDueDate] = useState("");
   const [errorMessage, UpdateErrorMessage] = useState("Test");
 
+  const saveItem = async () => {
+    const owner = await AsyncStorage.getItem('username');
+    const boardName = await AsyncStorage.getItem('boardName');
+    const response = await fetch(`http://localhost:8080/task/create/${boardName}`, {
+      method: 'POST',
+      headers: {
+        'Authoritazion': await AsyncStorage.getItem('token'),
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        title: enteredTitle,
+        description: enteredDescription,
+        dueDate: enteredDueDate,
+        owner: owner
+      })
+    });
+    if (!response.ok) {
+      const message = `An error has occured: ${response.status}`;
+      console.log(message);
+      throw new Error(message);
+    }
+  
+    const resData = await response.json();
+    console.log(resData);
+  };
   return (
     <View style={styles.container}>
       <Header text="Create item" />
@@ -32,7 +58,7 @@ export default function CreateItemScreen() {
             <Text style={styleCreateItem.loginErrorMessageText}>{errorMessage}</Text>
           </View>
         </View>
-        <Pressable style={{ ...styles.flexbox, ...styleCreateItem.saveBtn }}>
+        <Pressable style={{ ...styles.flexbox, ...styleCreateItem.saveBtn }} onPress={saveItem}>
           <Text style={styleCreateItem.saveBtnText}>Save</Text>
         </Pressable>
       </Main>

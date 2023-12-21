@@ -5,40 +5,13 @@ import { stylesLogin } from "../stylesheets/styleLogin";
 import { Header } from "../components/header";
 import { Main } from "../components/main";
 import { Footer } from "../components/footer";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function LoginScreen() {
   const [enteredUsername, UpdateEnteredUsername] = useState("");
   const [enteredPassword, UpdateEnteredPassword] = useState("");
   const [errorMessage, UpdateErrorMessage] = useState("");
-
-  const handleLogin = async () => {
-    try {
-      const response = await fetch("http://10.0.0.133:8080/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username: enteredUsername,
-          password: enteredPassword,
-        }),
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        AsyncStorage.setItem("token", await data.token);
-        AsyncStorage.setItem("username", enteredUsername);
-      } else {
-        const errorData = await response.json();
-        alert(errorData.error);
-        UpdateErrorMessage(errorData.error || "Error while signing in");
-      }
-    } catch (error) {
-      UpdateErrorMessage("Error while signing in");
-    }
-  };
 
   return (
     <View style={styles.container}>
