@@ -13,6 +13,35 @@ export default function LoginScreen() {
   const [enteredPassword, UpdateEnteredPassword] = useState("");
   const [errorMessage, UpdateErrorMessage] = useState("");
 
+  const handleLogin = async () => {
+    try {
+      const response = await fetch("http://10.0.0.133:8080/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: enteredUsername,
+          password: enteredPassword,
+        }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        alert("Login successful");
+        AsyncStorage.setItem("token", await data.token);
+        AsyncStorage.setItem("username", enteredUsername);
+        router.replace("/screens/boardSite");
+      } else {
+        const errorData = await response.json();
+        alert(errorData.error);
+        UpdateErrorMessage(errorData.error || "Error while signing in");
+      }
+    } catch (error) {
+      UpdateErrorMessage("Error while signing in");
+    }
+  };
+
   return (
     <View style={styles.container}>
       <Header text="TaskHub" />
