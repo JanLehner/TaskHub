@@ -6,29 +6,15 @@ import { Header } from "../components/header";
 import { Main } from "../components/main";
 import { Footer } from "../components/footer";
 import { handleLogout } from "../methods/handleLogout";
+import { fetchToDos } from "../methods/fetchToDos";
 
 export default function BoardScreen() {
   const [boards, setBoards] = useState([]);
   const [emptyPrompt, setEmptyPrompt] = useState("");
 
   useEffect(() => {
-    fetchYourBoards();
+    setBoards(fetchToDos());
   }, []);
-
-  const fetchYourBoards = async () => {
-    try {
-      const response = await fetch('Your API URL');
-      const data = await response.json();
-      if (data.fetchedBoards.count > 0) {
-        setBoards(data.fetchedBoards.items);
-      } else {
-        setEmptyPrompt("Ohh it's cold in here, time to create some boards by clicking on the plus.");
-      }
-    } catch (error) {
-      console.error("Error fetching boards:", error);
-      setEmptyPrompt("Error loading boards. Please try again later.");
-    }
-  };
 
   return (
     <View style={styles.container}>
