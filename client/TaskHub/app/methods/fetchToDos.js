@@ -14,7 +14,7 @@ export const fetchToDos = async () => {
     );
     if (response.ok) {
       const data = await response.json();
-      return data.items;
+      return data.fetchedBoards.items;
     } else {
       throw new Error("Error while fetching items");
     }
