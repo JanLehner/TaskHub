@@ -16,7 +16,7 @@ export default function CreateItemScreen() {
   const saveItem = async () => {
     const owner = await AsyncStorage.getItem('username');
     const boardName = await AsyncStorage.getItem('boardName');
-    const response = await fetch(`http://localhost:8080/board/create/${boardName}`, {
+    const response = await fetch(`http://localhost:8080/task/create/${boardName}`, {
       method: 'POST',
       headers: {
         'Authoritazion': await AsyncStorage.getItem('token'),
