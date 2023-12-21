@@ -5,7 +5,7 @@ import { stylesLogin } from "../stylesheets/styleLogin";
 import { Header } from "../components/header";
 import { Main } from "../components/main";
 import { Footer } from "../components/footer";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 
 export default function RegisterScreen() {
   const [enteredUsername, UpdateEnteredUsername] = useState("");
@@ -27,6 +27,7 @@ export default function RegisterScreen() {
       });
 
       if (response.ok) {
+        router.replace("/screens/loginSite");
         const data = await response.json();
         alert("Registration successful");
       } else {
