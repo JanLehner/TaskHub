@@ -16,26 +16,35 @@ export default function BoardScreen() {
     setBoards(fetchToDos());
   }, []);
 
+  useEffect(() => {
+    if (boards == []) {
+      setEmptyPrompt("ohh it's cold in here, time to create some boards by clicking on the plus.");
+    } else {
+      setEmptyPrompt("");
+    }
+  }, [boards]);
+
   return (
     <View style={styles.container}>
       <Header text="Your boards" />
       <Main>
         <ScrollView style={stylesBoards.boardsScrollView} contentContainerStyle={{ display: "flex", justifyContent: "center", alignItems: "center", }}>
-          {boards.length === 0 && <Text style={stylesBoards.emptyPromt}>{emptyPrompt}</Text>}
-          {boards.map((board, index) => (
-            <View key={index} style={{ ...styles.flexbox, ...stylesBoards.boardItem }}>
-              <Text style={stylesBoards.boardItemTitle}>{board.title}</Text>
-              <Text style={stylesBoards.boardItemDescription}>Owner: {board.owner}</Text>
-            </View>
-          ))}
+          <Text>{emptyPrompt}</Text>
+          {boards.length > 0 &&
+            boards.map((item, index) => (
+              <Pressable key={index} style={{ ...styles.flexbox, ...stylesBoards.boardItem }}>
+                <Text style={stylesBoards.boardItemTitle}>{item.key}</Text>
+                <Text style={stylesBoards.boardItemDescription}>Owner: {item.owner}</Text>
+              </Pressable>
+            ))}
         </ScrollView>
         <View style={{ ...styles.flexbox, ...stylesBoards.mainFooter }}>
           <Pressable style={{ ...styles.flexbox, ...stylesBoards.logoutBtn }}>
-            <Text style={stylesBoards.logoutBtnText} onPress={() => {handleLogout()}}>Logout</Text>
+            <Text style={stylesBoards.logoutBtnText} onPress={() => { handleLogout() }}>Logout</Text>
           </Pressable>
           <Pressable style={{ ...styles.flexbox, ...stylesBoards.addBtn }}>
-            <Text style={stylesBoards.addBtnText}> 
-            +
+            <Text style={stylesBoards.addBtnText}>
+              +
             </Text>
           </Pressable>
         </View>
