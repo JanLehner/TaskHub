@@ -88,10 +88,10 @@ router.post("/addPublicBoard", checkUserBody, async (req, res) => {
   }
 });
 
-router.get("/getAll", async (req, res) => {
+router.get("/getAll/:username", async (req, res) => {
   try {
     const parameters: IGetPublicBoards = req.body as IGetPublicBoards;
-    const username = parameters.username;
+    const username = req.params.username;
     if (username == undefined || username == null || username == "") {  
       throw new Error("Invalid username.");
     }
