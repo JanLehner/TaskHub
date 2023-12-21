@@ -141,31 +141,45 @@ npm run start
 
 Nun wurde die Applikation erfolgreich gestartet und kann unter http://localhost:5713 erreicht werden.
 
+:::caution
+
+Für dieses Projekt muss man selber das Backend starten und hosten, da wir es nicht machen. Das heisst man muss alle Dependencies installieren also wie folgt:
+
+```bash
+npm i
+npm i jsonwebtoken
+npm run dev
+```
+
+Falls das Backend nicht auf http://localhost:8080/ gehostet wird muss man dies im Code umändern.
+
+:::
+
 ## Anforderungen
 
-| Anf.-Nr. | Muss/<br />Kann | funk./<br />qual. | Beschreibung                                                                                                                                                            |
-| :------- | :-------------- | ----------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1.       | Muss            | funk.             | Die Webapplikation soll ein Registrierungsfeld haben, welches einen Benutzernamen und ein Password annimmt.                                                             |
-| 1.1      | Muss.           | funk.             | Bei der Registration soll das Passwort des Benutzer gehasht werden, bevor es in der Datenbank abgespeichert wird.                                                       |
-| 2.       | Muss            | funk.             | Die Webapplikation soll ein Anmeldungsfeld haben, welches einen Benutzernamen und ein Password annimmt.                                                                 |
-| 3.       | Kann            | qual.             | Beim Login Screen gibt es ein zusätzlicher Button "Passwort zurücksetzten" der bei aktivierung das Passwort resetet und dem Benutzer das neue Passwort per Mail sendet. |
-| 4.       | Kann            | qual.             | Hat der Benutzer sich eingelogt und noch keine Boards auf seinem Profil hinzugefügt, wird ihm gezeigt wie man das machen kann.                                          |
-| 5.       | Muss            | funk.             | Auf der Boardseite gibt es einen Button mit dem sich der Benutzer auslogen kann.                                                                                        |
-| 6.       | Muss            | funk.             | Wenn der User ein Board hinzufügen will, kann er zwischen ein neues erstellen und ein öffentliches hinzufügen auswählen.                                                |
-| 7.       | Muss            | funk.             | Beim Erstellen von einem neuen Board kann der Benutzer einen Namen sowie eine Beschreibung für das Board eingeben.                                                      |
+
+| Anf.-Nr. | Muss/<br />Kann | funk./<br />qual. | Beschreibung                                                                                                                                                               |
+| :--------- | :---------------- | ------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1.       | Muss            | funk.             | Die Webapplikation soll ein Registrierungsfeld haben, welches einen Benutzernamen und ein Password annimmt.                                                                |
+| 2.       | Muss            | funk.             | Die Webapplikation soll ein Anmeldungsfeld haben, welches einen Benutzernamen und ein Password annimmt.                                                                    |
+| 3.       | Kann            | qual.             | Beim Login Screen gibt es ein zusätzlicher Button "Passwort zurücksetzen" der bei aktivierung das Passwort resetet und dem Benutzer das neue Passwort per Mail sendet.   |
+| 4.       | Kann            | qual.             | Hat der Benutzer sich eingelogt und noch keine Boards auf seinem Profil hinzugefügt, wird ihm gezeigt wie man das machen kann.                                            |
+| 5.       | Muss            | funk.             | Auf der Boardseite gibt es einen Button mit dem sich der Benutzer ausloggen kann.                                                                                          |
+| 6.       | Muss            | funk.             | Wenn der User ein Board hinzufügen will, kann er zwischen einem neuem erstellen und ein öffentliches hinzufügen auswählen.                                             |
+| 7.       | Muss            | funk.             | Beim Erstellen von einem neuen Board kann der Benutzer einen Namen sowie eine Beschreibung für das Board eingeben.                                                        |
 | 7.1      | Muss.           | funk.             | Beim Erstellen von einem neuen Board kann der Benutzer auswählen, ob das Board öffentlich machen möchte, falls er dies tut, muss er nach einem Passwort gefragt werden. |
-| 8.       | Muss.           | funk.             | Beim Hinzufügen von einem öffentlichen Board, muss der Benutzer den Namen des Boards und das Passwort eingeben.                                                         |
-| 9.       | Muss.           | funk.             | Wenn der Benutzer ein Board hinzugefügt hat, sollen auf der Boardseite alle seine Boards angezeigt werden.                                                              |
+| 8.       | Muss.           | funk.             | Beim Hinzufügen von einem öffentlichen Board, muss der Benutzer den Namen des Boards und das Passwort eingeben.                                                          |
+| 9.       | Muss.           | funk.             | Wenn der Benutzer ein Board hinzugefügt hat, sollen auf der Boardseite alle seine Boards angezeigt werden.                                                                |
 | 9.1      | Muss.           | funk.             | Wenn der Benutzer ein öffentliches Board hinzugefügt hat, sollen auf der Boardseite alle seine Boards sowie die öffentlichen Boards angezeigt werden.                   |
-| 10.      | Muss.           | funk.             | Der Benutzer kann bei seinem eigenen Boards ToDos hinzufügen.                                                                                                           |
-| 10.1     | Muss.           | funk.             | Beim Hinzufügen von einem ToDo muss der Benutzer den Namen, die Beschreibung und das Fälligkeitsdatum eingeben.                                                         |
-| 10.2     | Kann.           | qual.             | Beim Hinzufügen von einem ToDo kann der Benutzer freiwillig, einen oder mehrere Verantwortliche(n) für das ToDo angeben.                                                |
-| 11.      | Muss.           | funk.             | Der Benutzer kann bei seinem eigenen Board ToDos aktualisieren.                                                                                                         |
-| 11.1     | Muss.           | funk.             | Beim Aktualisieren von einem ToDo muss der Benutzer nur, die zu verändernden Daten neuen eingeben.                                                                      |
-| 11.2     | Kann.           | qual.             | Beim Aktualisieren von einem ToDo kann der Benutzer freiwillig, den/die Verantwortlichen verändern.                                                                     |
-| 12.      | Muss.           | funk.             | Der Benutzer kann bei seinem eigenen Board ToDos löschen, aber er muss gefragt werden, ob er das wirklich tun möchte.                                                   |
+| 10.      | Muss.           | funk.             | Der Benutzer kann bei seinem eigenen Boards ToDos hinzufügen.                                                                                                             |
+| 10.1     | Muss.           | funk.             | Beim Hinzufügen von einem ToDo muss der Benutzer den Namen, die Beschreibung und das Fälligkeitsdatum eingeben.                                                          |
+| 10.2     | Kann.           | qual.             | Beim Hinzufügen von einem ToDo kann der Benutzer freiwillig, einen oder mehrere Verantwortliche(n) für das ToDo angeben.                                                 |
+| 11.      | Muss.           | funk.             | Der Benutzer kann bei seinem eigenen Board ToDos aktualisieren.                                                                                                            |
+| 11.1     | Muss.           | funk.             | Beim Aktualisieren von einem ToDo muss der Benutzer nur, die zu verändernden Daten neuen eingeben.                                                                        |
+| 11.2     | Kann.           | qual.             | Beim Aktualisieren von einem ToDo kann der Benutzer freiwillig, den/die Verantwortlichen verändern.                                                                       |
+| 12.      | Muss.           | funk.             | Der Benutzer kann bei seinem eigenen Board ToDos löschen, aber er muss gefragt werden, ob er das wirklich tun möchte.                                                    |
 | 13.      | Muss.           | funk.             | Der Benutzer kann bei seinem eigenen Board oder bei öffentlichen Boards, zu denen er gehört, die ToDos genauer anschauen, indem er auf das ToDo drückt.                 |
-| 14.      | Muss.           | funk.             | Auf jeder Seite gibt es einen "Back"-Knopf, damit der Benutzer wieder zur Boardseite (Startseite) gelanngt.                                                             |
+| 14.      | Muss.           | funk.             | Auf jeder Seite gibt es einen "Back"-Knopf, damit der Benutzer wieder zur Boardseite (Startseite) gelanngt.                                                                |
 
 ## Arbeitspakete
 
@@ -179,8 +193,9 @@ Arbeitspakete \* Sitzungen \* Gruppenmitglieder<br />
 5 \* 7 \* 4 + 16 = 156 Arbeitpakete
 :::
 
+
 | Nr. | Frist      | Beschreibung                                           | Zeit in Arbeitspaketen (geplant) |
-| --- | ---------- | ------------------------------------------------------ | -------------------------------- |
+| ----- | ------------ | -------------------------------------------------------- | ---------------------------------- |
 | 1   | 09.11.2023 | Informieren (von IPERKA)                               | 20                               |
 | 2   | 16.11.2023 | Planen und Entscheiden (von IPERKA)                    | 18                               |
 | 3   | 16.11.2023 | GitHub Repository aufsetzen                            | 2                                |
@@ -194,15 +209,16 @@ Arbeitspakete \* Sitzungen \* Gruppenmitglieder<br />
 
 ## Ausführung
 
+
 | Nr. | Frist      | Bemerkung                                                                                                                                                                                                                                                                                                                                                                 | Zeit (geplant) | Zeit (effektiv) |
-| :-- | :--------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- | --------------- |
-| 1   | 09.11.2023 | Wir hatten schnell sehr viele gute Ideen, aber hatten Mühe uns zu einigen. Letztendlich konnten wir uns aber noch im Zeitrahmen einigen.                                                                                                                                                                                                                                  | 10             | 10              |
+| :---- | :----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- | ----------------- |
+| 1   | 09.11.2023 | Wir hatten schnell sehr viele gute Ideen, aber hatten Mühe uns zu einigen. Letztendlich konnten wir uns aber noch im Zeitrahmen einigen.                                                                                                                                                                                                                                 | 10             | 10              |
 | 2   | 16.11.2023 | Wir haben die Planung erstellt und die wichtigen Entscheidungen getroffen. Wir hatten Probleme damit uns bei den Technologien zu einigen, da zwei Gruppenmitglieder an der Machbarkeit gezweifelt haben. Um uns zu einigen, haben wir das Problem in kleine Teile aufgeteilt und alle haben erkannt, dass es machbar ist. Beim Aufsetzen des Repos gab es keine Probleme. | 20             | 18              |
 | 3.  | 23.11.2023 | Wir waren sogar ein wenig weiter als geplant, aber einer von uns war nicht da und irgendwie hat npm i nicht funktioniert wie es sollte und wir haben, nachdem das Projekt nicht richtig funktioniert, haben wir es neu aufgesetzt.                                                                                                                                        | 20             | 22              |
-| 4.  | 30.11.2023 | Wir haben das Frontend realisiert mit den verschiedenen Unterseiten, aber nich nicht ganz vollständig                                                                                                                                                                                                                                                                     | 20             | 24              |
+| 4.  | 30.11.2023 | Wir haben das Frontend realisiert mit den verschiedenen Unterseiten, aber nich nicht ganz vollständig                                                                                                                                                                                                                                                                    | 20             | 24              |
 | 5.  | 07.12.2023 | Wir haben das Backend umgesetzt und am Ende gemrekt, dass man noch mehr Sachen braucht um Daten zu erstellen.                                                                                                                                                                                                                                                             | 20             | 30              |
 | 6.  | 14.12.2023 | Wir haben die letzten Unterseiten erstellt und die API-Calls implementiert und die letzten Denkfehler und noch nicht fertigen API-Calls gemacht.                                                                                                                                                                                                                          | 20             | 36              |
-| 7.  | 21.12.2023 | Wir haben die Testfälle durchgeführt und diese auch direkt ausgewertet, aber wir haben auch unser Portfolio geschrieben.                                                                                                                                                                                                                                                  | 36             | 36              |
+| 7.  | 21.12.2023 | Wir haben die Testfälle durchgeführt und diese auch direkt ausgewertet, aber wir haben auch unser Portfolio geschrieben.                                                                                                                                                                                                                                                | 36             | 36              |
 
 ### Testumgebungen
 
@@ -220,29 +236,35 @@ Für den Browser verwenden wir die neuste Version von Mozilla Firefox (120).
 
 ## Testfälle
 
-| Testf.-Nr. | Anforderung                                                                                                                                                                   | Voraussetzung                                                                         | Testumgebung | Eingabe | Erw. Ausgabe |
-| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------ | ------- | ------------ |
-| 1          | Die Webapplikation soll ein Registrierungsfeld haben, welches einen Benutzernamen und ein Password annimmt.                                                                   | Webapplikation gestartet, keine Benutzerdaten vorhanden                               | Per Hand     | -       | -            |
-| 1.1        | Bei der Registration soll das Passwort des Benutzers gehasht werden, bevor es in der Datenbank abgespeichert wird.                                                            | Registrierung durchgeführt (Testf.-Nr. 1)                                             | Per Hand     | -       | -            |
-| 2          | Die Webapplikation soll ein Anmeldungsfeld haben, welches einen Benutzernamen und ein Password annimmt.                                                                       | Webapplikation gestartet, Benutzerdaten vorhanden                                     | Per Hand     | -       | -            |
-| 3          | Beim Login Screen gibt es einen zusätzlichen Button “Passwort zurücksetzen”, der bei Aktivierung das Passwort resetet und dem Benutzer das neue Passwort per Mail sendet.     | Benutzer angemeldet                                                                   | Per Hand     | -       | -            |
-| 4          | Hat der Benutzer sich eingeloggt und noch keine Boards auf seinem Profil hinzugefügt, wird ihm gezeigt, wie man das machen kann.                                              | Benutzer angemeldet, kein Board vorhanden                                             | Per Hand     | -       | -            |
-| 5          | Auf der Boardseite gibt es einen Button, mit dem sich der Benutzer ausloggen kann.                                                                                            | Benutzer angemeldet                                                                   | Per Hand     | -       | -            |
-| 6          | Wenn der User ein Board hinzufügen will, kann er zwischen einem neuen erstellen und einem öffentlichen hinzufügen auswählen.                                                  | Benutzer angemeldet                                                                   | Per Hand     | -       | -            |
-| 7          | Beim Erstellen von einem neuen Board kann der Benutzer einen Namen sowie eine Beschreibung für das Board eingeben.                                                            | Benutzer angemeldet, Auswahl neues Board erstellen                                    | Per Hand     | -       | -            |
-| 7.1        | Beim Erstellen von einem neuen Board kann der Benutzer auswählen, ob das Board öffentlich gemacht werden soll. Falls er dies tut, muss er nach einem Passwort gefragt werden. | Benutzer angemeldet, Auswahl neues öffentliches Board erstellen                       | Per Hand     | -       | -            |
-| 8          | Beim Hinzufügen von einem öffentlichen Board muss der Benutzer den Namen des Boards und das Passwort eingeben.                                                                | Benutzer angemeldet, Auswahl öffentliches Board hinzufügen                            | Per Hand     | -       | -            |
-| 9          | Wenn der Benutzer ein Board hinzugefügt hat, sollen auf der Boardseite alle seine Boards angezeigt werden.                                                                    | Benutzer angemeldet, Board hinzugefügt                                                | Per Hand     | -       | -            |
-| 9.1        | Wenn der Benutzer ein öffentliches Board hinzugefügt hat, sollen auf der Boardseite alle seine Boards sowie die öffentlichen Boards angezeigt werden.                         | Benutzer angemeldet, öffentliches Board hinzugefügt                                   | Per Hand     | -       | -            |
-| 10         | Der Benutzer kann bei seinem eigenen Boards ToDos hinzufügen.                                                                                                                 | Benutzer angemeldet, Board vorhanden                                                  | Per Hand     | -       | -            |
-| 10.1       | Beim Hinzufügen von einem ToDo muss der Benutzer den Namen, die Beschreibung und das Fälligkeitsdatum eingeben.                                                               | Benutzer angemeldet, Board vorhanden, ToDo-Eingabemaske aktiviert                     | Per Hand     | -       | -            |
-| 10.2       | Beim Hinzufügen von einem ToDo kann der Benutzer freiwillig einen oder mehrere Verantwortliche für das ToDo angeben.                                                          | Benutzer angemeldet, Board vorhanden, ToDo-Eingabemaske aktiviert                     | Per Hand     | -       | -            |
-| 11         | Der Benutzer kann bei seinem eigenen Board ToDos aktualisieren.                                                                                                               | Benutzer angemeldet, Board vorhanden                                                  | Per Hand     | -       | -            |
-| 11.1       | Beim Aktualisieren von einem ToDo muss der Benutzer nur die zu verändernden Daten neuen eingeben.                                                                             | Benutzer angemeldet, Board vorhanden, ToDo ausgewählt, Aktualisierungsmaske aktiviert | Per Hand     | -       | -            |
-| 11.2       | Beim Aktualisieren von einem ToDo kann der Benutzer freiwillig den/die Verantwortlichen verändern.                                                                            | Benutzer angemeldet, Board vorhanden, ToDo ausgewählt, Aktualisierungsmaske aktiviert | Per Hand     | -       | -            |
-| 12         | Der Benutzer kann bei seinem eigenen Board ToDos löschen, aber er muss gefragt werden, ob er das wirklich tun möchte.                                                         | Benutzer angemeldet, Board vorhanden                                                  | Per Hand     | -       | -            |
-| 13         | Der Benutzer kann bei seinem eigenen Board oder bei öffentlichen Boards, zu denen er gehört, die ToDos genauer anschauen, indem er auf das ToDo drückt.                       | Benutzer angemeldet, Board mit ToDos vorhanden                                        | Per Hand     | -       | -            |
-| 14         | Auf jeder Seite gibt es einen “Back”-Knopf, damit der Benutzer wieder zur Boardseite (Startseite) gelangt.                                                                    | Benutzer angemeldet, beliebige Seite geöffnet                                         | Per Hand     | -       | -            |
+
+| Testf.-Nr. | Anforderung | Voraussetzung                                                     | Testumgebung | Eingabe                                                                                           | Erw. Ausgabe                                                                              |
+| ------------ | ------------- | ------------------------------------------------------------------- | -------------- | --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| 1.0.1      | 1           | Webapplikation gestartet                                          | Per Hand     | 1. URL = "http://localhost:8081/register"                                                         | 2. Register als Titel und ein Feld für den Username und das Passwort mit register Button |
+| 2.1        | 2           | Webapplikation gestartet                                          | Per Hand     | 1. URL = "http://localhost:8081/register"                                                         | 2. Login als Titel und ein Feld für den Username und das Passwort mit login Button       |
+| 3.1        | 3           | Benutzer angemeldet                                               | Per Hand     | 1. Knopf "Passwort zurücksetzen" drüken                                                         | 2. Email mit neuem Passwort.                                                              |
+| 4.1        | 4           | Benutzer angemeldet                                               | Per Hand     | 1. Username = 1<br />Passwort = 1                                                                 | 2. "ohh it's cold in here, time to create some items by clicking on the plus."            |
+| 5.1        | 5           | URL eingegeben                                                    | Per Hand     | 1. Username = 1<br />Passwort = 1                                                                 | 2. Auslog Button unten links.                                                             |
+| 6.1        | 6           | Benutzer angemeldet                                               | Per Hand     | 1. Auf das + klicken                                                                              | 2. Auswahl zwischen öffentliches und neues erstellen.                                    |
+| 7.0.1      | 7.0         | Benutzer angemeldet                                               | Per Hand     | 1. Auf das + klicken                                                                              | 2. Eingabefeld für Beschreibung und Titel.                                               |
+| 7.1.1      | 7.1         | Benutzer angemeldet                                               | Per Hand     | 1. Auf das + klicken und dann öffentlich auswählen                                              | 2. Eingabefeld für Passwort.                                                             |
+| 8.1        | 8           | Benutzer angemeldet                                               | Per Hand     | 1. Gibt URL von öffentlichen Board ein.                                                          | 2. Eingabefelder für Titel und Passwort.                                                 |
+| 9.0.1      | 9.0         | Benutzer angemeldet                                               | Per Hand     | 1. Seite refreshen                                                                                | 2. Alle seine aktuellen Boards.                                                           |
+| 9.1.1      | 9.1         | Benutzer angemeldet                                               | Per Hand     | 1. Seite refreshen                                                                                | 2. Alle seine aktuellen Boards.                                                           |
+| 10.0.1     | 10.0        | Benutzer angemeldet                                               | Per Hand     | 1. URL = "http://localhost:8081/screens/itemsSites"                                               | 2. Button mit +                                                                           |
+| 10.1.1     | 10.1        | Benutzer angemeldet                                               | Per Hand     | 1. Auf den + Button drüken                                                                       | 2. Eingabefelder für Titel, Beschreibung und Datum                                       |
+| 10.2.1     | 10.2        | Benutzer angemeldet und ToDo in einem Board erstellt              | Per Hand     | 1. URL = "http://localhost:8081/screens/itemsSites"                                               | 2. Alle ToDos werden angezeigt und man kann Verantwortliche auswählen.                   |
+| 11.0.1     | 11.0        | Benutzer angemeldet und ToDo in einem Board erstellt              | Per Hand     | 1. URL = "http://localhost:8081/screens/itemsSites"                                               | 2. Auf Edit drücken.                                                                     |
+| 11.1.1     | 11.1        | Benutzer angemeldet und ToDo in einem Board erstellt (und 11.0.1) | Per Hand     | 2. Titel wird zu test2 verändert und dann auf speichern drücken                                 | 1. ToDo Daten<br />3. (keine Fehlmeldung)                                                 |
+| 11.1.2     | 11.1        | Benutzer angemeldet und ToDo in einem Board erstellt(und 11.0.1)  | Per Hand     | 2. Beschreibung wird zu 1234567 verändert und dann auf speichern drücken                        | 1. ToDo Daten<br /><br />3. (keine Fehlmeldung)                                           |
+| 11.1.3     | 11.1        | Benutzer angemeldet und ToDo in einem Board erstellt(und 11.0.1)  | Per Hand     | 2. Beschreibung wird zu 24.12.2023 verändert und dann auf speichern drücken                     | 1. ToDo Daten<br /><br />3. (keine Fehlmeldung)                                           |
+| 11.2.1     | 11.2        | Benutzer angemeldet und eines von 11.1.1/2/3                      | Per Hand     | 2. Der oberste wird ausgewählt                                                                   | 1. Alle Verantwortlichen werden angezeigt.<br />3. (keine Fehlmeldung)                    |
+| 12.1       | 12          | Benutzer angemeldet und ein ToDo erstellt in einem Board          | Per Hand     | 1. URL = "http://localhost:8081/screens/itemsSites"<br />und man drückt beim ersten auf löschen | 2. Man wird gefragt, ob man es wirklich will.                                             |
+| 13.1       | 13          | Benutzer angemeldet, Board mit ToDos vorhanden                    | Per Hand     | 1. URL = "http://localhost:8081/screens/boardSites"<br />und auf Inspect drücken                 | 2. Beschreibung wird angezeigt                                                            |
+| 14.1       | 14          | Benutzer angemeldet                                               | Per Hand     | 1. URL = "http://localhost:8081/screens/boardSites"                                               | 2. Back Button wird angezeigt                                                             |
+| 14.2       | 14          | Benutzer angemeldet                                               | Per Hand     | 1. URL = "http://localhost:8081/screens/boardSites"                                               | 2. Back Button wird angezeigt                                                             |
+| 14.3       | 14          | Benutzer angemeldet                                               | Per Hand     | 1. URL = "http://localhost:8081/screens/createBoardSite"                                          | 2. Back Button wird angezeigt                                                             |
+| 14.4       | 14          | Benutzer angemeldet                                               | Per Hand     | 1. URL = "http://localhost:8081/screens/CreateItemSite"                                           | 2. Back Button wird angezeigt                                                             |
+| 14.5       | 14          | Benutzer angemeldet                                               | Per Hand     | 1. URL = "http://localhost:8081/screens/updateItemSite"                                           | 2. Back Button wird angezeigt                                                             |
 
 ### Testprotokoll
 
@@ -254,8 +276,9 @@ Für den Browser verwenden wir die neuste Version von Mozilla Firefox (120).
 
 :::
 
+
 | Test-Nr | Bericht | Tester                                               |
-| ------- | ------- | ---------------------------------------------------- |
+| --------- | --------- | ------------------------------------------------------ |
 | 1       | OK      | @RelxOff, @Niels-Brunokowski, @janLehner und @sanqro |
 | 1.1     | OK      | @RelxOff, @Niels-Brunokowski, @janLehner und @sanqro |
 | 2       | OK      | @RelxOff, @Niels-Brunokowski, @janLehner und @sanqro |
