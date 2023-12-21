@@ -15,7 +15,7 @@ export default function LoginScreen() {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch("http://localhost:8080/auth/login", {
+      const response = await fetch("http://10.0.0.133:8080/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -27,11 +27,11 @@ export default function LoginScreen() {
       });
 
       if (response.ok) {
-        router.replace("/screens/boardSite");
         const data = await response.json();
+        alert("Login successful");
         AsyncStorage.setItem("token", await data.token);
         AsyncStorage.setItem("username", enteredUsername);
-        alert("Login successful");
+        router.replace("/screens/boardSite");
       } else {
         const errorData = await response.json();
         alert(errorData.error);
