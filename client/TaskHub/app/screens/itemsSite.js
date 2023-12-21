@@ -38,7 +38,7 @@ export default function ItemScreen() {
         </ScrollView>
         <View style={{ ...styles.flexbox, ...styleItems.mainFooter }}>
           <Pressable style={{ ...styles.flexbox, ...styleItems.logoutBtn }}>
-            <Text style={styleItems.logoutBtnText}>Logout</Text>
+            <Text style={styleItems.logoutBtnText} onPress={handleLogin}>Logout</Text>
           </Pressable>
           <Pressable style={{ ...styles.flexbox, ...styleItems.addBtn }}>
             +
