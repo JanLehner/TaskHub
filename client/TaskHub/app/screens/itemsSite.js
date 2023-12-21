@@ -5,6 +5,7 @@ import { styleItems } from "../stylesheets/styleItems";
 import { Header } from "../components/header";
 import { Main } from "../components/main";
 import { Footer } from "../components/footer";
+import { handleLogout } from "../methods/handleLogout";
 
 export default function ItemScreen() {
   const [isEmptyPromptVisible, UpdateIsEmptyPromptVisible] = useState(true);
@@ -38,7 +39,7 @@ export default function ItemScreen() {
         </ScrollView>
         <View style={{ ...styles.flexbox, ...styleItems.mainFooter }}>
           <Pressable style={{ ...styles.flexbox, ...styleItems.logoutBtn }}>
-            <Text style={styleItems.logoutBtnText} onPress={handleLogin}>Logout</Text>
+            <Text style={styleItems.logoutBtnText} onPress={() => handleLogout()}>Logout</Text>
           </Pressable>
           <Pressable style={{ ...styles.flexbox, ...styleItems.addBtn }}>
             +

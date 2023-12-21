@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import { styles } from "./stylesheets/style";
 import { Link } from "expo-router";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useNavigation } from '@react-navigation/native';
 import { router } from 'expo-router';
 
 export default function IndexScreen() {

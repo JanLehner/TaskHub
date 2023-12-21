@@ -5,6 +5,7 @@ import { stylesBoards } from "../stylesheets/styleBoards";
 import { Header } from "../components/header";
 import { Main } from "../components/main";
 import { Footer } from "../components/footer";
+import { handleLogout } from "../methods/handleLogout";
 
 export default function BoardScreen() {
   const [boards, setBoards] = useState([]);
@@ -44,10 +45,12 @@ export default function BoardScreen() {
         </ScrollView>
         <View style={{ ...styles.flexbox, ...stylesBoards.mainFooter }}>
           <Pressable style={{ ...styles.flexbox, ...stylesBoards.logoutBtn }}>
-            <Text style={stylesBoards.logoutBtnText}>Logout</Text>
+            <Text style={stylesBoards.logoutBtnText} onPress={() => {handleLogout()}}>Logout</Text>
           </Pressable>
           <Pressable style={{ ...styles.flexbox, ...stylesBoards.addBtn }}>
+            <Text style={stylesBoards.addBtnText}> 
             +
+            </Text>
           </Pressable>
         </View>
       </Main>
